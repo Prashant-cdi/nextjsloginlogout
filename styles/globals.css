@@ -1,9 +1,9 @@
 html,
 body {
   padding: 0;
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    
 }
 
 a {
@@ -13,4 +13,34 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+
+.buttonsdiv {
+  display: flex;
+  justify-content: space-around; 
+  margin: 0rem 4rem;
+}
+
+.buttons {
+  width: 9rem;
+  border-radius: 10px;
+  background-color: cornsilk;
+  padding: 10px 10px;
+  border-style: outset;
+  margin: 10px 0px;
+}
+
+.formDiv {
+  width:400px;
+  height:400px;
+  text-align: left;
+  margin:auto;
+}
+
+.inputs {
+  width: 100%;
+  height: 2rem;
+  border-radius: 6px;
+  background-color: azure
 }
