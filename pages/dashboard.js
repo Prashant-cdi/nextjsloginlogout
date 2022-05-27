@@ -1,41 +1,41 @@
-var total = "";
+import React, { useState } from "react";
 
 export default function Dashboard() {
-  function handleUser() {
-    console.log("handleuser is run");
-    async function fetchdata() {
-      console.log("fecthdata is run");
-      let response = await fetch("https://reqres.in/api/users");
-      return await response.json();
-    }
+  const [usersData, setusersData] = useState();
+  const [resourcesData, setResourcesData] = useState();
 
-    async function renderUsers() {
-      console.log("renderUsers is run");
-      let data = await fetchdata();
-
-      data.data.forEach((user) => {
-        console.log("foreach is run");
-
-        let segment = (
-          <div key={user.id}>
-            <div>{user.id}</div>
-            <div>{user.email}</div>
-            <div>{user.first_name}</div>
-            <div>{user.last_name}</div>
-          </div>
-        );
-
-        console.log(segment);
-        total = total + segment;
+  async function handleUser() {
+    document.getElementsByClassName("AllUsersData")[0].style.display = "flex";
+    document.getElementsByClassName("AllResourcesData")[0].style.display =
+      "none";
+    console.log("handleUser is run");
+    await fetch("https://reqres.in/api/users")
+      .then((response) => {
+        return response.json();
+      })
+      .then((myJson) => {
+        let requsersdata = myJson.data;
+        console.log(requsersdata);
+        setusersData(requsersdata);
       });
-      console.log(total);
-      return total;
-    }
-
-    renderUsers();
   }
 
-  function handleResources() {}
+  async function handleResources() {
+    console.log("this is run");
+    document.getElementsByClassName("AllUsersData")[0].style.display = "none";
+    document.getElementsByClassName("AllResourcesData")[0].style.display =
+      "flex";
+    await fetch("https://reqres.in/api/unknown")
+      .then((response) => {
+        return response.json();
+      })
+      .then((myJson) => {
+        console.log(myJson.data);
+        let resResourcesData = myJson.data;
+        setResourcesData(resResourcesData);
+      });
+  }
+
   return (
     <>
       <div>
@@ -48,6 +48,30 @@ export default function Dashboard() {
         <button type="button" className="buttons" onClick={handleResources}>
           Resources
         </button>
+      </div>
+
+      <div className="AllUsersData">
+        {/* <h1 style={{ textAlign: "center" }}> All Users Data</h1> */}
+        {usersData?.map((user) => (
+          <div key={user.id} className="OneUserdata">
+            <h3 key={user.id}>Id: {user.id}</h3>
+            <h3 key={user.first_name}>First Name: {user.first_name}</h3>
+            <h3 key={user.last_name}>Last Name: {user.last_name}</h3>
+            <h3 key={user.email}>Email: {user.email}</h3>
+          </div>
+        ))}
+      </div>
+
+      <div className="AllResourcesData">
+        {/* <h1 style={{ textAlign: "center" }}> All Resources Data</h1>     */}
+        {resourcesData?.map((resource) => (
+          <div key={resource.id} className="OneResourcedata">
+            <h3 key={resource.id}>Id: {resource.id}</h3>
+            <h3 key={resource.name}>First Name: {resource.name}</h3>
+            <h3 key={resource.year}>Last Name: {resource.year}</h3>
+            <h3 key={resource.color}>Email: {resource.color}</h3>
+          </div>
+        ))}
       </div>
     </>
   );

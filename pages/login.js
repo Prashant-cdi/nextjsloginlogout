@@ -21,6 +21,7 @@ export default function Login() {
     console.log(result);
 
     console.log(typeof result);
+    
     if (response.status === 201) {
       alert("Login Successful and statuscode " + response.status);
 

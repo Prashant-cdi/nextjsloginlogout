@@ -44,3 +44,29 @@ a {
   border-radius: 6px;
   background-color: azure
 }
+
+.AllUsersData {  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.AllResourcesData {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.OneUserdata,.OneResourcedata{   
+   width: 400px;
+  min-width: 30%;
+  padding: 20px;
+  background-color: cyan;
+  border: 1px solid;
+  margin: 10px;
+}
+
+.OneUserdata h3, .OneResourcedata h3{
+  border-bottom: 1px solid
+}
+
